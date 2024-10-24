@@ -5,6 +5,7 @@ import type { Session } from "next-auth";
 import { api } from "~/trpc/react";
 import { NoteEditor } from "./NoteEditor";
 import { EditableNote } from "./EditableNote";
+import { AddOffer } from "./AddOffer";
 
 type Props = {
   sessionData: Session | null;
@@ -116,6 +117,7 @@ export const Content = ({ sessionData }: Props) => {
             });
           }}
         />
+        <AddOffer />
       </div>
     </div>
   ) : (
