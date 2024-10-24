@@ -6,7 +6,8 @@ export const offerRouter = createTRPCRouter({
     getAll: publicProcedure.query(async ({ ctx }) => { 
         return ctx.db.note.findMany()
     }),
-    create: protectedProcedure.input(z.object(
+    create: protectedProcedure
+    .input(z.object(
         {
             price: z.number().nonnegative(),
             description: z.string(),
@@ -27,7 +28,7 @@ export const offerRouter = createTRPCRouter({
             // seats: z.number(),
         }
     ))
-.mutation(({ctx, input}) => {
+    .mutation(({ctx, input}) => {
     return ctx.db.offer.create({
         data: {
             ...input,

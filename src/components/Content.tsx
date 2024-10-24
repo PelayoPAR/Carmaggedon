@@ -48,6 +48,8 @@ export const Content = ({ sessionData }: Props) => {
     onSuccess: () => void refetchNotes(),
   });
 
+  const createOffer = api.offer.create.useMutation();
+
   useEffect(() => {
     setSelectedTopic((selectedTopic) => selectedTopic ?? topics?.[0] ?? null);
   }, [topics]);
@@ -117,7 +119,14 @@ export const Content = ({ sessionData }: Props) => {
             });
           }}
         />
-        <AddOffer />
+        <AddOffer
+         createOffer={
+          ( price, description ) => {
+            createOffer.mutate({
+              price,
+              description,
+            });
+          }}/>
       </div>
     </div>
   ) : (
