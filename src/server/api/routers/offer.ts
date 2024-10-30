@@ -4,7 +4,7 @@ import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const offerRouter = createTRPCRouter({
     getAll: publicProcedure.query(async ({ ctx }) => { 
-        return ctx.db.note.findMany()
+        return ctx.db.offer.findMany()
     }),
     create: protectedProcedure
     .input(z.object(
