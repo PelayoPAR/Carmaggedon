@@ -7,7 +7,7 @@ type Props = {
   sessionData: Session | null;
 };
 
-export const Content = ({ sessionData }: Props) => {
+export const AdminContent = ({ sessionData }: Props) => {
   // const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   // const [newTopic, setNewTopic] = useState<string>("");
   // const { data: topics, refetch: refetchTopics } = api.topic.getAll.useQuery(
