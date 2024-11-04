@@ -104,8 +104,8 @@ model Offer {
     price       Float
     description String
     // images         String[]
-    // fuel           String
-    // year           Int
+    fuel        String   @default("unknown")
+    year        Int      @default(0)
     // make           String
     // model          String
     // cc             Int

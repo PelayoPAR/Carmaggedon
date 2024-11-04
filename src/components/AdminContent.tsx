@@ -64,10 +64,12 @@ export const AdminContent = ({ sessionData }: Props) => {
 
         <AddOffer
          createOffer={
-          ( price, description ) => {
+          ( {price, description, fuel, year }) => {
             createOffer.mutate({
               price,
               description,
+              fuel,
+              year,
             });
           }}/>
       </div>
