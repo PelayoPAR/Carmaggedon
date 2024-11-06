@@ -3,6 +3,8 @@ import { api, HydrateClient } from "~/trpc/server";
 import Head from "next/head";
 import React from "react";
 import CarList from "~/components/CarList";
+import { db } from "~/server/db";
+const offerList = await db.offer.findMany()
 
 export default async function Home() {
 
@@ -14,7 +16,7 @@ export default async function Home() {
       </Head>
       <main className="flex min-h-screen flex-col items-center">
 
-        <CarList/>
+        <CarList offerList={offerList} />
       </main>
     </HydrateClient>
   );

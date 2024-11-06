@@ -106,8 +106,8 @@ model Offer {
     // images         String[]
     fuel        String   @default("unknown")
     year        Int      @default(0)
-    // make           String
-    // model          String
+    make        String
+    model       String
     // cc             Int
     // power          Int
     // gearbox        String

@@ -6,8 +6,8 @@ import { type Metadata } from "next";
 import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
-  title: "Notetaker T3",
-  description: "A simple note-taking app using T3 stack",
+  title: "Car App",
+  description: "A simple car app using T3 stack",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

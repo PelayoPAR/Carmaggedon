@@ -2,6 +2,7 @@
 import type { Session } from "next-auth";
 import { api } from "~/trpc/react";
 import { AddOffer } from "./AddOffer";
+import CarList from "./CarList";
 
 type Props = {
   sessionData: Session | null;
@@ -17,7 +18,7 @@ export const AdminContent = ({ sessionData }: Props) => {
   //   },
   // );
 
-    const { data: offers, refetch: refetchOffers } = api.offer.getAll.useQuery();
+    const { data: offers = [], refetch: refetchOffers, isFetching: fetchingOffers } = api.offer.getAll.useQuery();
 
   // const createTopic = api.topic.create.useMutation({
   //   onSuccess: () => {
@@ -46,7 +47,11 @@ export const AdminContent = ({ sessionData }: Props) => {
   //   onSuccess: () => void refetchNotes(),
   // });
 
-  const createOffer = api.offer.create.useMutation();
+  const createOffer = api.offer.create.useMutation(
+    {
+      onSuccess: () => void refetchOffers(),
+    }
+  );
 
   // useEffect(() => {
   //   setSelectedTopic((selectedTopic) => selectedTopic ?? topics?.[0] ?? null);
@@ -55,21 +60,21 @@ export const AdminContent = ({ sessionData }: Props) => {
   return sessionData?.user ? (
     <div className="mx-5 mt-5 grid grid-cols-1 gap-2">
       <div className="px-2">
-         {offers?.map((offer) => { return (
-          <div className="flex items-baseline" key={offer.id}>
-            <h1 className="text-2xl mr-3">{offer.price}</h1>
-            <p>{offer.description}</p>
-          </div>
-         )})}
+
+         {
+         fetchingOffers ? <h3>Loading...</h3> : 
+         <CarList offerList={offers}/>}
 
         <AddOffer
          createOffer={
-          ( {price, description, fuel, year }) => {
+          ( {price, description, fuel, year, make, model }) => {
             createOffer.mutate({
               price,
               description,
               fuel,
               year,
+              make,
+              model,
             });
           }}/>
       </div>
